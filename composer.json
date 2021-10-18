@@ -1,6 +1,6 @@
 {
   "name": "jblond/phpcurl",
-  "description": "A short description of what your package does",
+  "description": "A php curl client",
   "require": {
     "php": ">=8.0",
     "ext-curl": "*",
