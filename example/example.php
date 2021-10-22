@@ -1,20 +1,8 @@
-# PHP Curl client
-
-## install
-
-```bash
-composer require jblond/phpcurl
-```
-
-## example
-
-```php
 <?php
-
 use jblond\phpcurl\Client;
 use jblond\phpcurl\Decoder;
 
-require './vendor/autoload.php';
+require '../vendor/autoload.php';
 
 $client = new Client();
 $decoder = new Decoder();
@@ -27,10 +15,10 @@ else
     $content = $response;
 }
 print_r($content);
+echo '<hr>';
 print_r(
     $client->post(
         'http://localhost/post.php',
         json_encode(['lorem' => 'lol'])
     )
 );
-```

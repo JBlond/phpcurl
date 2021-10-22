@@ -4,6 +4,9 @@ namespace jblond\phpcurl;
 
 use CurlHandle;
 
+/**
+ *
+ */
 class Client
 {
     /**
@@ -31,13 +34,16 @@ class Client
     }
 
     /**
-     * @return bool|string
+     * @return bool|string|array
      */
-    protected function sendRequest(): bool|string
+    protected function sendRequest(): bool|string|array
     {
         $response = curl_exec($this->curl);
         if ($response === false) {
-            $response = curl_error($this->curl);
+            $response = [
+                'message' => curl_error($this->curl),
+                'number' => curl_errno($this->curl)
+            ];
         }
         curl_close($this->curl);
         return $response;
@@ -45,14 +51,31 @@ class Client
 
     /**
      * @param string $url
-     * @return bool|string
+     * @return bool|string|array
      */
-    public function get(string $url): bool|string
+    public function get(string $url): bool|string|array
     {
         curl_setopt_array(
             $this->curl,
             [
                 CURLOPT_URL => $url,
+            ]
+        );
+        return $this->sendRequest();
+    }
+
+    /**
+     * @param $data
+     * @return bool|string
+     */
+    public function post($url, $data): bool|string
+    {
+        curl_setopt_array(
+            $this->curl,
+            [
+                CURLOPT_URL => $url,
+                CURLOPT_POSTFIELDS => $data,
+                CURLOPT_POST => true
             ]
         );
         return $this->sendRequest();
