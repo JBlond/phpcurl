@@ -7,10 +7,10 @@ use JsonException;
 class Decoder
 {
     /**
-     * @param $data
+     * @param string $data
      * @return array
      */
-    public function jsonToArray($data): array
+    public function jsonToArray(string $data): array
     {
         try {
             $content = json_decode($data, true, 512, JSON_THROW_ON_ERROR);
