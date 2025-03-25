@@ -14,6 +14,15 @@ class Client
      */
     protected false|CurlHandle $curl;
 
+    protected array $curlOptions = [
+        CURLOPT_HEADER => false,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_SSL_VERIFYPEER => true,
+        CURLOPT_SSL_VERIFYHOST => 2,
+        CURLOPT_CONNECTTIMEOUT => 0,
+        CURLOPT_TIMEOUT => 600,
+    ]
+
     /**
      * Client constructor.
      */
@@ -22,14 +31,7 @@ class Client
         $this->curl = curl_init();
         curl_setopt_array(
             $this->curl,
-            [
-                CURLOPT_HEADER => false,
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_SSL_VERIFYPEER => true,
-                CURLOPT_SSL_VERIFYHOST => 2,
-                CURLOPT_CONNECTTIMEOUT => 0,
-                CURLOPT_TIMEOUT => 600,
-            ]
+            $this->getCurlOptions
         );
     }
 
@@ -79,5 +81,21 @@ class Client
             ]
         );
         return $this->sendRequest();
+    }
+
+    /**
+    * @param array $curlOptions
+    */
+    public function setCurlOptions(array $curlOptions): void
+    {
+        $this->curlOptions = $curlOptions;
+    }
+
+	/**
+    * @return array $curlOptions
+    */
+    protected function getCurlOptions(): array
+    {
+        return $this->curlOptions; 
     }
 }
