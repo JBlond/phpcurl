@@ -29,7 +29,7 @@ class Client
     public function __construct($curlOptions = "")
     {
         if (!empty($curlOptions)) {
-            $this->setCurlOptions(array $curlOptions);
+            $this->setCurlOptions($curlOptions);
         }
         $this->curl = curl_init();
         curl_setopt_array(
