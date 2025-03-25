@@ -21,7 +21,7 @@ class Client
         CURLOPT_SSL_VERIFYHOST => 2,
         CURLOPT_CONNECTTIMEOUT => 0,
         CURLOPT_TIMEOUT => 600,
-    ]
+    ];
 
     /**
      * Client constructor.
