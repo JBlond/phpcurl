@@ -26,8 +26,11 @@ class Client
     /**
      * Client constructor.
      */
-    public function __construct()
+    public function __construct($curlOptions = "")
     {
+        if (!empty($curlOptions)) {
+            $this->setCurlOptions(array $curlOptions);
+        }
         $this->curl = curl_init();
         curl_setopt_array(
             $this->curl,
