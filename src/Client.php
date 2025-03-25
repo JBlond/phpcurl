@@ -34,7 +34,7 @@ class Client
         $this->curl = curl_init();
         curl_setopt_array(
             $this->curl,
-            $this->getCurlOptions
+            $this->getCurlOptions()
         );
     }
 
